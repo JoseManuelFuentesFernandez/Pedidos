@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido_Producto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26b55fb7-6d8c-42eb-9ece-9b7900cad72f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="70277de1-4e3e-4ee6-a7e9-950887691c48"/>
+	<subDataset name="Table Dataset 1" uuid="56a96f6f-000e-4693-92e3-7a1f8c0327e8"/>
+	<subDataset name="Table Dataset 2" uuid="9519551b-12dd-4c64-8155-c0dfafc71c09"/>
+	<parameter name="categoriaid" class="java.lang.Integer"/>
+	<parameter name="total" class="java.lang.Integer"/>
+	<field name="productoid" class="java.lang.Integer"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="preciounit" class="java.lang.Double"/>
+	<field name="existencia" class="java.lang.Integer"/>
+	<field name="categoriaid.nombrecat" class="java.lang.String"/>
+	<field name="categoriaid.categoriaid" class="java.lang.Integer"/>
+	<variable name="numeroProductos" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{numeroProductos}+1]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="237" y="14" width="100" height="20" uuid="21ea05ba-3e87-41bd-b277-d4030f7e56d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PRODUCTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="455" y="15" width="100" height="20" uuid="4f7de4e1-e6da-4d00-827a-ecab9fdb156b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="f00dec61-19d1-4d44-9f25-d28968c16135"/>
+				<text><![CDATA[productoid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="100" height="20" uuid="a0c6c872-d042-447b-a6f5-9d35798a6146"/>
+				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20" uuid="90dacc09-a244-4fb9-90e5-302d4d592328"/>
+				<text><![CDATA[preciounit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="2" width="100" height="20" uuid="8da8e792-655f-4c43-8a13-2fe9bbf4eae2"/>
+				<text><![CDATA[existencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20" uuid="1bcc1547-2b69-4e48-b42f-e50abf75ecdd"/>
+				<text><![CDATA[categoriaid]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="40db8f35-78a2-41d9-a532-309ff5fb1022"/>
+				<textFieldExpression><![CDATA[$F{productoid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="b2efd02a-908f-4c7d-bf97-b0f75cce920a"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="9945f80f-1515-4e68-9386-ba41b65a26ea"/>
+				<textFieldExpression><![CDATA[$F{preciounit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="f5bd0779-fac1-4593-b420-f3edf72a5181"/>
+				<textFieldExpression><![CDATA[$F{existencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="52946073-99ae-4f39-a2df-13fe8b5c12b2"/>
+				<textFieldExpression><![CDATA[$F{categoriaid.nombrecat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="34" width="100" height="20" uuid="f5ab9942-84ec-4fc0-b56c-a6d5cbd80642"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="199">
+			<textField>
+				<reportElement x="382" y="179" width="173" height="20" uuid="9cf381c0-b92c-4f02-97b5-ac5430b0b0d7"/>
+				<textFieldExpression><![CDATA["Numero de productos: "+$P{total}]]></textFieldExpression>
+			</textField>
+			<barChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="179" uuid="e03a5c80-21c5-4761-a126-29965cef3319"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Productos por categoría"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{categoriaid.nombrecat}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{productoid}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</lastPageFooter>
+</jasperReport>
