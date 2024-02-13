@@ -23,7 +23,6 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Generador {
     //////////////////////////////  PLANTILLA NO TOCAR  //////////////////////////////
     /*public static void leerInforme(List<> lista, String rutaInforme, String nombreInformeSalida){
-<<<<<<< HEAD
         try {
             JasperPrint print;
             HashMap param = new HashMap();
