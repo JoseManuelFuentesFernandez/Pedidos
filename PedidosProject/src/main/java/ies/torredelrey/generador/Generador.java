@@ -40,7 +40,7 @@ public class Generador {
     
     ///////////////////////////////////////////////////////////////////////////////////
     // ****************** CODIFICAR AQUI ABAJO ******************
-     public static void leerInformeProductos(Collection listaProductos,String rutaInforme,String nombreInformeSalida){
+    public static void leerInformeProductos(Collection listaProductos,String rutaInforme,String nombreInformeSalida){
         try {
             
             JasperPrint print;
@@ -55,7 +55,8 @@ public class Generador {
             Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      public static void leerInformeEmpleados(Collection listaEmpleados,String rutaInforme,String nombreInformeSalida){
+     
+    public static void leerInformeEmpleados(Collection listaEmpleados,String rutaInforme,String nombreInformeSalida){
         try {
             
             JasperPrint print;
@@ -63,6 +64,22 @@ public class Generador {
             param.put("categoriaid", 100);
             param.put("total", listaEmpleados.size());
             JRDataSource datasource = new JRBeanArrayDataSource(listaEmpleados.toArray());
+            print = JasperFillManager.fillReport(rutaInforme, param,datasource);
+            JasperExportManager.exportReportToPdfFile(print,nombreInformeSalida);
+            JasperViewer.viewReport(print);
+        } catch (JRException ex) {
+            Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void leerInformeClientes(Collection listaClientes,String rutaInforme,String nombreInformeSalida){
+        try {
+            
+            JasperPrint print;
+            HashMap param = new HashMap();
+            param.put("categoriaid", 100);
+            param.put("total", listaClientes.size());
+            JRDataSource datasource = new JRBeanArrayDataSource(listaClientes.toArray());
             print = JasperFillManager.fillReport(rutaInforme, param,datasource);
             JasperExportManager.exportReportToPdfFile(print,nombreInformeSalida);
             JasperViewer.viewReport(print);
