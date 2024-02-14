@@ -275,7 +275,7 @@ public class FrmMenu extends javax.swing.JFrame {
     //Evento para mostrar el informe con los clientes
     private void menuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientesActionPerformed
         // TODO add your handling code here:
-        Generador.leerInformeClientes(clientes.findClientesEntities(), "src\\main\\resources\\report\\InformeClientes.jasper", "empleados.pdf");
+        Generador.leerInformeClientes(clientes.findClientesEntities(), "src\\main\\resources\\report\\InformeClientes.jasper", "clientes.pdf");
     }//GEN-LAST:event_menuClientesActionPerformed
 
     /**
