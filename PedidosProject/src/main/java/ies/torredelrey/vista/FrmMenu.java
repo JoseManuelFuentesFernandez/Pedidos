@@ -6,8 +6,10 @@ package ies.torredelrey.vista;
 
 import ies.torredelrey.controlador.ClientesJpaController;
 import ies.torredelrey.controlador.EmpleadosJpaController;
+import ies.torredelrey.controlador.OrdenesJpaController;
 import ies.torredelrey.controlador.ProductosJpaController;
 import ies.torredelrey.generador.Generador;
+import ies.torredelrey.modelo.Ordenes;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -23,12 +25,16 @@ public class FrmMenu extends javax.swing.JFrame {
     ProductosJpaController productos;
     EmpleadosJpaController empleados;
     ClientesJpaController clientes;
+    OrdenesJpaController ordenes;
     public FrmMenu() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ies.torredelrey_PedidosProject_jar_1.0-SNAPSHOTPU");
         productos=new ProductosJpaController(emf);
         empleados=new EmpleadosJpaController(emf);
         clientes=new ClientesJpaController(emf);
+        ordenes = new OrdenesJpaController(emf);
         initComponents();
+        //Manfredi pon la ventana en el medio 
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -163,13 +169,11 @@ public class FrmMenu extends javax.swing.JFrame {
                 .addGroup(pnlFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFondo2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(icono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(icono))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +199,7 @@ public class FrmMenu extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(pnlFondoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, Short.MAX_VALUE)
         );
         pnlFondo1Layout.setVerticalGroup(
             pnlFondo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +234,11 @@ public class FrmMenu extends javax.swing.JFrame {
 
         menuPedidos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuPedidos.setText("Pedidos");
+        menuPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPedidosActionPerformed(evt);
+            }
+        });
         menuPrincipal.add(menuPedidos);
 
         menuEmpleados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -277,6 +286,12 @@ public class FrmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         Generador.leerInformeClientes(clientes.findClientesEntities(), "src\\main\\resources\\report\\InformeClientes.jasper", "clientes.pdf");
     }//GEN-LAST:event_menuClientesActionPerformed
+
+    private void menuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidosActionPerformed
+        // TODO add your handling code here:
+        String ruta = "src\\main\\resources\\report\\InformeProductoEmpleado.jasper";
+        Generador.leerinformeOrdenes(empleados.findEmpleadosEntities(), ordenes.findOrdenesEntities(), ruta, "ordenes.pdf");
+    }//GEN-LAST:event_menuPedidosActionPerformed
 
     /**
      * @param args the command line arguments

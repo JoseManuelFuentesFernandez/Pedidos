@@ -13,6 +13,7 @@ ies\torredelrey\controlador\DetalleOrdenesJpaController.class
 ies\torredelrey\modelo\Empleados.class
 ies\torredelrey\modelo\Clientes_.class
 ies\torredelrey\controlador\exceptions\IllegalOrphanException.class
+ies\torredelrey\vista\FrmMenu$5.class
 ies\torredelrey\controlador\ProveedoresJpaController.class
 ies\torredelrey\modelo\DetalleOrdenesPK.class
 ies\torredelrey\vista\FrmMenu$3.class

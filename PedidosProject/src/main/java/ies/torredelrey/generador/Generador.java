@@ -14,6 +14,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -78,6 +79,9 @@ public class Generador {
             HashMap param = new HashMap();
             param.put("categoriaid", 100);
             param.put("total", listaClientes.size());
+            
+            
+            
             JRDataSource datasource = new JRBeanArrayDataSource(listaClientes.toArray());
             print = JasperFillManager.fillReport(rutaInforme, param,datasource);
             JasperExportManager.exportReportToPdfFile(print,nombreInformeSalida);
@@ -87,6 +91,33 @@ public class Generador {
         }
     }
      
-     
+    public static void leerinformeOrdenes(Collection listaClientes, Collection listaOrdenes, String rutaInforme, String nombreInformeSalida) {
+    try {
+        JasperPrint print;
+        HashMap param = new HashMap();
+
+        // Parámetros para el informe principal
+        param.put("categoriaid", 100);
+        param.put("total", listaClientes.size());
+
+        // Parámetros para el subinforme (pueden variar según tu configuración en iReport)
+        param.put("ordenesDataSource", new JRBeanCollectionDataSource(listaOrdenes));
+
+        // DataSource para el informe principal
+        JRDataSource datasource = new JRBeanArrayDataSource(listaClientes.toArray());
+
+        // Llenar el informe principal
+        print = JasperFillManager.fillReport(rutaInforme, param, datasource);
+
+        // Exportar el informe a un archivo PDF
+        JasperExportManager.exportReportToPdfFile(print, nombreInformeSalida);
+
+        // Visualizar el informe
+        JasperViewer.viewReport(print);
+    } catch (JRException ex) {
+        Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+ 
     
 }
